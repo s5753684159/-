@@ -1,0 +1,51 @@
+{
+  "id": "3476752",
+  "name": "ziran",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "666888",
+      "name": "手机",
+      "font_class": "shouji",
+      "unicode": "e692",
+      "unicode_decimal": 59026
+    },
+    {
+      "icon_id": "2932856",
+      "name": "锁",
+      "font_class": "suo",
+      "unicode": "e80a",
+      "unicode_decimal": 59402
+    },
+    {
+      "icon_id": "577306",
+      "name": "方形未选中",
+      "font_class": "fangxingweixuanzhong",
+      "unicode": "e720",
+      "unicode_decimal": 59168
+    },
+    {
+      "icon_id": "577308",
+      "name": "方形选中",
+      "font_class": "fangxingxuanzhong",
+      "unicode": "e722",
+      "unicode_decimal": 59170
+    },
+    {
+      "icon_id": "29570615",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e6b2",
+      "unicode_decimal": 59058
+    },
+    {
+      "icon_id": "29570631",
+      "name": "菜单",
+      "font_class": "caidan",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
+    }
+  ]
+}
