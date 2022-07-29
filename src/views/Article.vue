@@ -33,7 +33,7 @@
         <input type="text" name="" id="comment" placeholder="写评论" style="height:24px" />
       </van-tabbar-item>
       <van-tabbar-item icon="comment-o">评论</van-tabbar-item>
-      <van-tabbar-item icon="star-o">收藏</van-tabbar-item>
+      <van-tabbar-item icon="star-o">收藏</van-tabbar-item>      
       <van-tabbar-item icon="good-job-o">点赞</van-tabbar-item>
       <van-tabbar-item icon="share-o">分享
       </van-tabbar-item>

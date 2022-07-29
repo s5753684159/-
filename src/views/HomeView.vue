@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-       <div class="home_finds">
+    <div class="home_finds">
       <div class="home_find" @click="back()">
         <van-icon name="search" replace to="/search" />
         <span>搜索</span>
@@ -16,44 +16,46 @@
     </van-tabs>
 
     <div class="articleList" style="padding-bottom: 60px">
-      <van-list
-        v-model="loading"
-        :finished="finished"
-        finished-text="到底了亲😘......"
-        @load="getArticle"
-        :immediate-check="false"
-      >
-        <!-- @load="getArticle"  是初始化好了以后自动触发一下   -->
-
-        <template #finished>
-          <div style="text-align: center; padding: 10px">
-            <van-icon name="guide-o" size="30" color="red" />
-          </div>
-        </template>
-
-        <template #loading>
-          <div style="text-align: center; padding: 10px">
-            <van-icon name="guide-o" size="30" color="red" />
-          </div>
-        </template>
-        <li
-          v-for="(item, index) in articleList"
-          :key="item._id"
-          @click="$router.push({ path: '/Article', query: { id: item._id } })"
+      <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+        <van-list
+          v-model="loading"
+          :finished="finished"
+          finished-text="到底了亲😘......"
+          @load="getArticle"
+          :immediate-check="false"
         >
-          <p>{{ item.title }}</p>
-          <div
-            :class="{
-              none: item.poster_type == 1,
-              articlesingleImg: item.poster_type == 2,
-              articlemoreImg: item.poster_type == 3,
-            }"
+          <!-- @load="getArticle"  是初始化好了以后自动触发一下   -->
+
+          <template #finished>
+            <div style="text-align: center; padding: 10px">
+              <van-icon name="guide-o" size="30" color="red" />
+            </div>
+          </template>
+
+          <template #loading>
+            <div style="text-align: center; padding: 10px">
+              <van-icon name="guide-o" size="30" color="red" />
+            </div>
+          </template>
+          <li
+            v-for="(item, index) in articleList"
+            :key="item._id"
+            @click="$router.push({ path: '/Article', query: { id: item._id } })"
           >
-            <img :src="img" v-for="img in item.imageSrc" />
-          </div>
-          <p>{{ item.time }}</p>
-        </li>
-      </van-list>
+            <p>{{ item.title }}</p>
+            <div
+              :class="{
+                none: item.poster_type == 1,
+                articlesingleImg: item.poster_type == 2,
+                articlemoreImg: item.poster_type == 3,
+              }"
+            >
+              <img :src="img" v-for="img in item.imageSrc" />
+            </div>
+            <p>{{ item.time }}</p>
+          </li>
+        </van-list>
+      </van-pull-refresh>
     </div>
   </div>
 </template>
@@ -62,7 +64,7 @@
 // @ is an alias to /src
 
 import { Tab, Tabs, List } from "vant";
-
+import { PullRefresh,Toast  } from "vant";
 import { getCateList, getArticleList } from "@/api/home.js";
 
 export default {
@@ -71,6 +73,8 @@ export default {
     [Tab.name]: Tab,
     [Tabs.name]: Tabs,
     [List.name]: List,
+    [Toast .name]:Toast ,
+    [PullRefresh.name]: PullRefresh,
   },
   data() {
     return {
@@ -81,6 +85,7 @@ export default {
       finished: false, //  是否全部加载完毕
       skip: 0, //  从skip 开始拿
       limit: 20, //  一次拿多少条
+      refreshing: false, //是否正在刷新
     };
   },
   computed: {
@@ -134,8 +139,8 @@ export default {
 
           // 每次请求完 做个判断  是否全部加载完毕了 如果加载完毕了  this.finished 改成 true
           // 如果没完毕  把loading 改成 false
-
           setTimeout((v) => {
+            this.refreshing = false;
             this.articleList.push(...res.data);
             let len = this.articleList.length;
             let count = res.count;
@@ -152,9 +157,19 @@ export default {
           console.log(err);
         });
     },
-       back() {
+    back() {
       this.$router.push("/search");
     },
+    onRefresh() {
+     
+        Toast("刷新成功");
+        this.skip=0
+        this.getArticle()
+        this.finished=false;
+
+        
+    },
+  
   },
 };
 </script>
@@ -177,7 +192,6 @@ export default {
   border-radius: 45px;
   font-size: 16px;
 }
-
 
 ::v-deep .van-nav-bar__title {
   max-width: 75%;
