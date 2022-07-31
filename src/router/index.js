@@ -14,11 +14,7 @@ const routes = [
       keep:true
     }
   },
-	{
-		path: '/search',
-		name: 'search',
-		component: () => import('../views/search.vue'),
-	},
+
   {
     path: '/login',
     name: 'login',
@@ -59,13 +55,25 @@ const routes = [
     }
   },
   {
-    path: '/Article',
-    name: 'Article',
-    component: () => import('../views/Article.vue'),// 
-
+    path: '/search',
+    name: 'search',
+    component: () => import('../views/search/search.vue'),// 
   },
+  {
+    path: '/searchList',
+    name: 'searchList',
+    component: () => import('../views/search/list.vue'),// 
+  },
+  {
+    path: '/article',
+    name: 'article',
+    component: () => import('../views/article/article.vue'),// 
+  },
+];
 
-]
+
+
+
 
 const router = new VueRouter({
   routes

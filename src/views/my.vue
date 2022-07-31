@@ -42,17 +42,16 @@
 
     <van-grid class="nav-grid mb-4" :column-num="2">
       <van-grid-item class="nav-grid-item">
-        <span><van-icon name="star-o" /></span>
+        <span class="iconfont icon-shoucang"></span>
         <span>收藏</span>
       </van-grid-item>
       <van-grid-item class="nav-grid-item">
-        <span><van-icon name="underway-o" /></span>
+        <span class="iconfont icon-lishi"></span>
         <span>历史</span>
       </van-grid-item>
     </van-grid>
     <van-cell title="修改密码" is-link to="/" />
     <van-cell title="联系我们" is-link to="/" />
-    <van-cell title="注销账号" is-link to="/" />
     <van-cell class="mb-4" title="关于我们" is-link to="/" />
     <van-cell
       class="logout-cell"
@@ -66,17 +65,6 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 import { Dialog } from "vant";
-// mapState 小工具  帮我们少敲几个字符
-
-// function m(arr){
-//     let obj = {};
-//       arr.forEach(v => {
-//         obj[v] = function(){
-//           return this.$store.state[v]
-//         }
-//       });
-//     return obj
-// }
 
 export default {
   name: "my",
@@ -86,14 +74,7 @@ export default {
   components: {
     [Dialog.Component.name]: Dialog.Component,
   },
-  created() {
-    //  是不是登录状态  有没有用户信息
-    //  如果有 渲染到页面
-    // let {uid,token,userInfo} = localStorage;
-    // if(uid){
-    //   console.log(uid,token,userInfo)
-    // }
-  },
+  created() {},
   methods: {
     ...mapMutations(["clear"]),
     async logout() {
@@ -115,12 +96,6 @@ export default {
 </script>
 
 <style lang="scss">
-.van-icon-star-o:before {
-  color: red;
-}
-.van-icon-underway-o:before {
-  color: red;
-}
 .container {
   .my-info {
     background: url("~@/assets/banner.jpg") no-repeat;

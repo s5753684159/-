@@ -6,41 +6,33 @@ import store from './store'
 Vue.config.productionTip = false;
 
 
-import '@/components/vant-global';   //  vant全局组件
+import '@/components/vant-global'; //  vant全局组件
 
 
 import '@/common/iconfont.js'
 
 
-//混入
+import mixin from '@/common/mixins'
 
-Vue.mixin({
-  data(){
-    return {
-      baseColor:'#07c160'
-    }
-  },
-})
+Vue.mixin(mixin);
 
-//  页面刷新 新纪元开启
+import init from '@/common/init';
 
-// localStorage.getItem('token')
-
-
-
-// token  去换 用户信息 
-
-// /user/getuserInfo  
-
-
-
-
-new Vue({
+const app =  new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app');
+})
 
+
+
+init().then(res=>{
+  app.$mount("#app");
+
+
+}).catch(err=>{
+  app.$mount("#app");
+})
 
 
 

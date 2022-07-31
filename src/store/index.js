@@ -44,7 +44,7 @@ export default new Vuex.Store({
     //  调接口  
     getuserInfo({commit},token){
 
-      getuserInfo({
+     return  getuserInfo({
         token
       }).then(res=>{
         console.log(res)
