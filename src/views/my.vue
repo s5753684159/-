@@ -42,17 +42,17 @@
 
     <van-grid class="nav-grid mb-4" :column-num="2">
       <van-grid-item class="nav-grid-item">
-        <span class="iconfont icon-shoucang"></span>
+        <span class="icon"><van-icon name="star-o" /></span>
         <span>收藏</span>
       </van-grid-item>
       <van-grid-item class="nav-grid-item">
-        <span class="iconfont icon-lishi"></span>
+        <span class="icon"><van-icon name="underway-o" /></span>
         <span>历史</span>
       </van-grid-item>
     </van-grid>
-    <van-cell title="修改密码" is-link to="/" />
-    <van-cell title="联系我们" is-link to="/" />
-    <van-cell class="mb-4" title="关于我们" is-link to="/" />
+    <van-cell title="修改密码" is-link to="/forget" />
+    <van-cell title="联系我们" is-link to="/contact" />
+    <van-cell class="mb-4" title="关于我们" is-link to="/about" />
     <van-cell
       class="logout-cell"
       title="退出登录"
@@ -95,7 +95,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="less">
+
 .container {
   .my-info {
     background: url("~@/assets/banner.jpg") no-repeat;
@@ -190,6 +191,9 @@ export default {
   }
   .mb-4 {
     margin-bottom: 4px;
+  }
+  .icon{
+    color:red
   }
 }
 </style>

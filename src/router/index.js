@@ -21,7 +21,24 @@ const routes = [
     component: () => import('../views/login.vue'),//  懒加载   
 
   },
-  
+  {
+    path: '/contact',
+    name: 'contact',
+    component: () => import('../views/contact.vue'),//  懒加载   
+
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('../views/about.vue'),//  懒加载   
+
+  },
+  {
+    path: '/forget',
+    name: 'forget',
+    component: () => import('../views/forget.vue'),//  懒加载   
+
+  },
   {
     path: '/reg',
     name: 'reg',

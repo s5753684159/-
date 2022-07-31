@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-nav-bar
-      title="登录"
+      title="修改密码"
       left-arrow
       @click-left="$router.back()"
     ></van-nav-bar>
@@ -21,10 +21,24 @@
         v-model="password"
         type="password"
         name="password"
-        label="密码"
-        placeholder="密码"
+        label="旧密码"
+        placeholder="旧密码"
         :rules="[
           { required: true, message: '请填写密码' },
+          {
+            validator: (e) => /^\w{6,12}$/.test(e),
+            message: '密码格式为6-12位字母或数字',
+          },
+        ]"
+      />
+       <van-field
+        v-model="vercode"
+        type="password"
+        name="password"
+        label="新密码"
+        placeholder="新密码"
+        :rules="[
+          { required: true, message: '请再次填写密码' },
           {
             validator: (e) => /^\w{6,12}$/.test(e),
             message: '密码格式为6-12位字母或数字',
@@ -41,8 +55,6 @@
           >提交</van-button
         >
       </div>
-      <router-link to="/forget">忘记密码</router-link>
-      <router-link to="/reg">注册</router-link>
     </van-form>
   </div>
 </template>
@@ -50,7 +62,7 @@
 <script>
 import { Form } from "vant";
 import { Field } from "vant";
-import { login } from "@/api/user";
+import { forget } from "@/api/user";
 export default {
   components: {
     [Form.name]: Form,
@@ -60,31 +72,12 @@ export default {
     return {
       username: "",
       password: "",
+      vercode:""
     };
   },
   methods: {
     onSubmit(values) {
-      //  在这那额数据是校验过的
       console.log("submit", values);
-
-      login(values).then((res) => {
-        console.log(res);
-
-        //  登录成功
-        // 信息存起来
-        if (res.code == 0) {
-          let { userInfo, token, uid, tokenExpired } = res;
-
-          localStorage.setItem("token", token);
-          localStorage.setItem("tokenExpired", tokenExpired);
-          this.$store.dispatch("getuserInfo", token);
-
-          setTimeout((v) => {
-            this.$router.back();
-          }, 800);
-        } else {
-        }
-      });
     },
   },
 };
