@@ -22,6 +22,12 @@ const routes = [
 
   },
   {
+    path: '/forget',
+    name: 'forget',
+    component: () => import('../views/forget.vue'),//  懒加载   
+
+  },
+  {
     path: '/updatePwd',
     name: 'updatePwd',
     component: () => import('../views/updatePwd.vue'),//  懒加载   

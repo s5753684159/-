@@ -31,3 +31,8 @@ export function updatePwd(params){
    
     return http.post('/user/updatePwd',params)
 }
+//忘记密码
+export function forGet(params){
+   
+    return http.post('/user/forget',params)
+}
