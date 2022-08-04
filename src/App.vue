@@ -1,13 +1,5 @@
 <template>
   <div id="app">
-    <!--   放页面的容器 -->
-    <!--  带了缓存 -->
-
-    <!-- 带了缓存以后  等于我们的被加到keep-alive中的组件 在销毁时会保存在内存中  有一个对象
-    下次被显示时  不会重新创建 而是从内存中再次取出来 -->
-
-    <!-- 有些页面不能被缓存   数据会出现错误 -->
-
 
   <keep-alive>
       <router-view v-if="$route.meta.keep"></router-view>
@@ -15,11 +7,7 @@
 
   <router-view v-if="!$route.meta.keep"></router-view>
 
-
-
-
     <!--   需要让主页面有底部栏   -->
-
     <!-- 不是主页面的时候让他消失 -->
 
     <van-tabbar

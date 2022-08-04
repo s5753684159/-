@@ -18,9 +18,9 @@
         ]"
       />
       <van-field
-        v-model="password"
-        type="password"
-        name="password"
+        v-model="oldPassword"
+        type="oldPassword"
+        name="oldPassword"
         label="旧密码"
         placeholder="旧密码"
         :rules="[
@@ -31,10 +31,10 @@
           },
         ]"
       />
-       <van-field
-        v-model="vercode"
-        type="password"
-        name="password"
+      <van-field
+        v-model="newPassword"
+        type="newPassword"
+        name="newPassword"
         label="新密码"
         placeholder="新密码"
         :rules="[
@@ -46,13 +46,8 @@
         ]"
       />
       <div style="margin: 16px">
-        <van-button
-          round
-          block
-          type="info"
-          native-type="submit"
-          :color="baseColor"
-          >提交</van-button
+        <van-button round block type="primary" native-type="submit"
+          >确认</van-button
         >
       </div>
     </van-form>
@@ -62,7 +57,7 @@
 <script>
 import { Form } from "vant";
 import { Field } from "vant";
-import { forget } from "@/api/user";
+import { updatePwd } from "@/api/user";
 export default {
   components: {
     [Form.name]: Form,
@@ -71,13 +66,28 @@ export default {
   data() {
     return {
       username: "",
-      password: "",
-      vercode:""
+      oldPassword: "",
+      newPassword: "",
+      uid: "",
     };
   },
   methods: {
     onSubmit(values) {
       console.log("submit", values);
+      updatePwd(values).then((res) => {
+        console.log(res);
+        if (res.code == 0) {
+          let {token, uid, tokenExpired } = res;
+          localStorage.getItem("token");
+          // localStorage.getItem("tokenExpired");
+          localStorage.getItem("uid");
+
+           this.$store.dispatch("getuserInfo", token);
+        } else {
+          
+        }
+       
+      });
     },
   },
 };

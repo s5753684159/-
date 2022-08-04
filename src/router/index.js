@@ -21,7 +21,12 @@ const routes = [
     component: () => import('../views/login.vue'),//  懒加载   
 
   },
-  
+  {
+    path: '/updatePwd',
+    name: 'updatePwd',
+    component: () => import('../views/updatePwd.vue'),//  懒加载   
+
+  },
   {
     path: '/reg',
     name: 'reg',

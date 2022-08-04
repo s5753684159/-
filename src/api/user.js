@@ -26,3 +26,8 @@ export function setuserInfo(params){
    
     return http.post('/user/editUserInfo',params)
 }
+//修改密码
+export function updatePwd(params){
+   
+    return http.post('/user/updatePwd',params)
+}
