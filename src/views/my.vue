@@ -50,7 +50,7 @@
         <p>历史</p>
       </van-grid-item>
     </van-grid>
-    <van-cell title="修改密码" is-link to="/forget" />
+    <van-cell title="修改密码" is-link to="/updatePwd" />
     <van-cell title="联系我们" is-link to="/contact" />
     <van-cell class="mb-4" title="关于我们" is-link to="/about" />
     <van-cell
